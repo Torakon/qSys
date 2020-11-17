@@ -17,18 +17,22 @@ public class Quest {
     public String getID() {
         return questID;
     }
-    public Stage getStageByID() {
+    public Status getStatus(){
+        return questStatus;
+    }
+
+    //Stage Related Get Methods
+    public int getListLength() {
+        return stageData.size();
+    }
+    public Stage getStageByID(String stageID) {
         for(Stage n : stageData){
-            if (n.getID().equals(questID)){
+            if (n.getID().equals(stageID)){
                 return n;
             }
         }
         return null;
     }
-    public Status getStatus(){
-        return questStatus;
-    }
-
     //Set Methods
     public void addStage(String stageID){
         stageData.add(new Stage(stageID));
