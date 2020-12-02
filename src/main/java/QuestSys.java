@@ -5,29 +5,32 @@ public class QuestSys {
     private ArrayList<Quest> questData = new ArrayList<>();
 
     public void createQuest(String questID) {
-        Quest questObj = new Quest(questID);
-        questData.add(questObj);
+        questData.add(new Quest(questID));
     }
 
     //Get Methods
     public Quest getQuestByID(String questID){
-        for(Quest n : questData){
-            if (n.getID().equals(questID)){
-                return n;
+        if (questData != null) {
+            for (Quest n : questData) {
+                if (n.getID().equals(questID)) {
+                    return n;
+                }
             }
         }
         return null;
     }
     public ArrayList<Quest> getQuestByStatus(Quest.Status status) {
         ArrayList<Quest> statusQuests = new ArrayList<>();
-        for(Quest n : questData){
-            if (n.getStatus() == status){
-                statusQuests.add(n);
+        if (questData != null) {
+            for (Quest n : questData) {
+                if (n.getStatus() == status) {
+                    statusQuests.add(n);
+                }
             }
         }
         return statusQuests;
     }
-    public Quest getQuestByIndex(int index) { //needed?
+    public Quest getQuestByIndex(int index) { //needed? - removal pending
         return questData.get(index);
     }
     public int getListLength() {
@@ -37,6 +40,6 @@ public class QuestSys {
         return questData.get(index).getID();
     }
 
-    //Set Methods
+    //Set Methods //if needed
 
 }
