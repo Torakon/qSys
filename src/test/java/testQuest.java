@@ -3,7 +3,7 @@ import org.junit.Test;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class testQuest {
     protected String testQuestID = "testCase";
@@ -77,7 +77,7 @@ public class testQuest {
 
         ArrayList<Stage> incompleteStages = testCase.getStageByStatus(false);
         for (Stage n : incompleteStages) {
-            assertEquals(false, n.getStatus());
+            assertFalse(n.getStatus());
         }
         assertEquals(2, incompleteStages.size());
         assertEquals(6, testCase.getAllStages().size());
@@ -94,8 +94,8 @@ public class testQuest {
         assertEquals(7, testStage.getMaxCounter());
         assertEquals(6, testStage.getProgress());
         testStage.incrementCounter();
-        assertEquals(true, testStage.getStatus());
+        assertTrue(testStage.getStatus());
         testStage.decrementCounter();
-        assertEquals(false, testStage.getStatus());
+        assertFalse(testStage.getStatus());
     }
 }
