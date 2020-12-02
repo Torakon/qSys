@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 
 public class testQuest {
+    protected String testQuestID = "testCase";
     @Test
     public void testStageCreation() {
-        Quest testCase = new Quest("testCase");
+        Quest testCase = new Quest(testQuestID);
         testCase.createStage("FirstStage");
         assertEquals(1, testCase.getListLength());
         assertEquals("FirstStage", testCase.getStageByID("FirstStage").getID());
@@ -34,7 +35,7 @@ public class testQuest {
     }
     @Test
     public void testStageStatus() {
-        Quest testCase = new Quest("testCase");
+        Quest testCase = new Quest(testQuestID);
         for (int i = 0; i<5; i++) {
             testCase.createStage(String.valueOf(i));
             testCase.getStageByID(String.valueOf(i)).setStatus(true);
@@ -48,8 +49,8 @@ public class testQuest {
     }
     @Test
     public void testMarkerInformation() {
-        Stage testCaseOne = new Stage("testCaseOne");
-        Stage testCaseTwo = new Stage("testCaseTwo");
+        Stage testCaseOne = new Stage(testQuestID + "One");
+        Stage testCaseTwo = new Stage(testQuestID + "Two");
         Point2D testLocationOne = new Point2D.Double(50,22);
         Point2D testLocationTwo = new Point2D.Double(22, 50);
         testCaseOne.setXY(50, 22);
@@ -62,13 +63,13 @@ public class testQuest {
     }
     @Test
     public void testCurrentStages() {
-        Quest testCase = new Quest("testQuest");
+        Quest testCase = new Quest(testQuestID);
         for (int i = 0; i < 5; i++) {
-            testCase.createStage("Stage" + i);
-            testCase.getStageByID("Stage" + i).setStatus(true);
+            testCase.createStage(testQuestID + i);
+            testCase.getStageByID(testQuestID + i).setStatus(true);
         }
-        Stage testStage = new Stage ("Stage5");
-        Stage testStageTwo = testCase.getStageByID("Stage3");
+        Stage testStage = new Stage (testQuestID + 5);
+        Stage testStageTwo = testCase.getStageByID(testQuestID + "3");
 
         testStage.setStatus(false);
         testStageTwo.setStatus(false);
@@ -80,6 +81,21 @@ public class testQuest {
         }
         assertEquals(2, incompleteStages.size());
         assertEquals(6, testCase.getAllStages().size());
-        assertEquals("Stage3", testCase.getFirstIncompleteStage().getID());
+        assertEquals(testQuestID + "3", testCase.getFirstIncompleteStage().getID());
+    }
+    @Test
+    public void testStageProgression() {
+        Stage testStage = new Stage(testQuestID + "1");
+        testStage.addCounter(7);
+        for (int i = 0; i < 6; i++) {
+            testStage.incrementCounter();
+        }
+
+        assertEquals(7, testStage.getMaxCounter());
+        assertEquals(6, testStage.getProgress());
+        testStage.incrementCounter();
+        assertEquals(true, testStage.getStatus());
+        testStage.decrementCounter();
+        assertEquals(false, testStage.getStatus());
     }
 }
