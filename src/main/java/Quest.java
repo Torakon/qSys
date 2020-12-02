@@ -1,10 +1,11 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Quest {
-    private String questID;
+    private final String questID;
     private ArrayList<Stage> stageData = new ArrayList<>();
     private Status questStatus;
-    private String desc = " ";
+    private String desc;
 
     public enum Status {
         NOT_ACCEPTED, ACCEPTED, FAILED, COMPLETE, FINISHED
@@ -15,12 +16,12 @@ public class Quest {
         questStatus = Status.NOT_ACCEPTED;
     }
     public void createStage(String stageID){
-        if (!uniqueCheck(stageID)){
+        if (uniqueCheck(stageID)){
             stageData.add(new Stage(stageID));
         }
     }
     public void createStage(Stage stage) {
-        if (!uniqueCheck(stage.getID())) {
+        if (uniqueCheck(stage.getID())) {
             stageData.add(stage);
         }
     }
@@ -33,11 +34,7 @@ public class Quest {
         return questStatus;
     }
     public String getDesc() {
-        if (desc != null) {
-            return desc;
-        } else {
-            return "No description has been set.";
-        }
+        return Objects.requireNonNullElse(desc, "The quest Description has not been set.");
     }
 
     //Stage Related Get Methods
@@ -71,7 +68,7 @@ public class Quest {
     public Stage getFirstIncompleteStage(){
         if (stageData != null) {
             for (Stage n : stageData) {
-                if (n.getStatus() == false){
+                if (!n.getStatus()){
                     return n;
                 }
             }
@@ -91,9 +88,9 @@ public class Quest {
     private boolean uniqueCheck(String id) {
         for (Stage n : stageData) {
             if(n.getID().equals(id)){
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 }
