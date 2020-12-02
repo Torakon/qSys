@@ -20,15 +20,15 @@ public class QuestSys {
         return null;
     }
     public ArrayList<Quest> getQuestByStatus(Quest.Status status) {
-        ArrayList<Quest> statusQuests = new ArrayList<>();
+        ArrayList<Quest> byStatus = new ArrayList<>();
         if (questData != null) {
             for (Quest n : questData) {
                 if (n.getStatus() == status) {
-                    statusQuests.add(n);
+                    byStatus.add(n);
                 }
             }
         }
-        return statusQuests;
+        return byStatus;
     }
     public Quest getQuestByIndex(int index) { //needed? - removal pending
         return questData.get(index);
