@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 
 public class QuestSys {
@@ -16,7 +15,7 @@ public class QuestSys {
     }
 
     //Get Methods
-    public Quest getQuestByID(String questID){
+    public Quest getQuestByID(String questID) {
         if (questData != null) {
             for (Quest n : questData) {
                 if (n.getID().equals(questID)) {
@@ -37,15 +36,10 @@ public class QuestSys {
         }
         return byStatus;
     }
-    public Quest getQuestByIndex(int index) { //needed? - removal pending
-        return questData.get(index);
-    }
     public int getListLength() {
         return questData.size();
     }
-    public String getQuestID(int index) {
-        return questData.get(index).getID();
-    }
+    //removed - getting quest by index
 
     //Set Methods //if needed
 
@@ -59,4 +53,19 @@ public class QuestSys {
         return true;
     }
 
+    public void updateQuests() {
+        for (Quest q : getQuestByStatus(Quest.Status.ACCEPTED)) {
+            if (q.getAllStages().size() > 0) {
+                boolean cCheck = true;
+                for (Stage s : q.getAllStages()) {
+                    if (!s.getStatus()) {
+                        cCheck = false;
+                    }
+                }
+                if (cCheck) {
+                    q.setStatus(Quest.Status.COMPLETE);
+                }
+            }
+        }
+    }
 }

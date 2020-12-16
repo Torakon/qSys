@@ -1,3 +1,4 @@
+
 import org.junit.Test;
 
 import java.awt.geom.Point2D;
@@ -25,13 +26,13 @@ public class testQuest {
         testCase.getQuestByID("2").setStatus(Quest.Status.FAILED);
         testCase.getQuestByID("3").setStatus(Quest.Status.COMPLETE);
         testCase.getQuestByID("3").setStatus(Quest.Status.COMPLETE);
-        testCase.getQuestByID("4").setStatus(Quest.Status.FINISHED);
+        testCase.getQuestByID("4").setStatus(Quest.Status.RESOLVED);
 
         assertEquals(Quest.Status.NOT_ACCEPTED, testCase.getQuestByID("0").getStatus());
         assertEquals(Quest.Status.ACCEPTED, testCase.getQuestByID("1").getStatus());
         assertEquals(Quest.Status.FAILED, testCase.getQuestByID("2").getStatus());
         assertEquals(Quest.Status.COMPLETE, testCase.getQuestByID("3").getStatus());
-        assertEquals(Quest.Status.FINISHED, testCase.getQuestByID("4").getStatus());
+        assertEquals(Quest.Status.RESOLVED, testCase.getQuestByID("4").getStatus());
     }
     @Test
     public void testStageStatus() {
@@ -68,7 +69,7 @@ public class testQuest {
             testCase.createStage(testQuestID + i);
             testCase.getStageByID(testQuestID + i).setStatus(true);
         }
-        Stage testStage = new Stage (testQuestID + 5);
+        Stage testStage = new Stage(testQuestID + 5);
         Stage testStageTwo = testCase.getStageByID(testQuestID + "3");
 
         testStage.setStatus(false);

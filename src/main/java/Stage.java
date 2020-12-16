@@ -8,6 +8,7 @@ public class Stage {
     private Point2D markerXY = new Point2D.Double(0, 0);
     private int markerRad = 0;
     private boolean usesCounter = false;
+    private boolean usesMarker = false;
     private int progress = 0;
     private int maxCounter = 0;
 
@@ -35,6 +36,8 @@ public class Stage {
     public int getMaxCounter() {
         return maxCounter;
     }
+    public boolean checkMarker() { return usesMarker; }
+    public boolean checkCounter() { return usesCounter; }
 
     //Set Methods
     public void setDesc(String stageDescription) {
@@ -46,11 +49,13 @@ public class Stage {
     public void setXY(int x, int y) {
         markerXY.setLocation(x, y);
     }
-    public void setXY(Point2D XY){
-        markerXY = XY;
+    public void setXY(Point2D location) {
+        markerXY = location;
+        usesMarker = true;
     }
-    public void setMarkerRadius(int rad) {
-        markerRad = rad;
+    public void setMarkerRadius(int radius) {
+        markerRad = radius;
+        usesMarker = true;
     }
     public void addCounter(int max) {
         usesCounter = true;
@@ -72,5 +77,4 @@ public class Stage {
             }
         }
     }
-    //add Component System for different quest types?
 }

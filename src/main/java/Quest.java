@@ -8,15 +8,15 @@ public class Quest {
     private String desc;
 
     public enum Status {
-        NOT_ACCEPTED, ACCEPTED, FAILED, COMPLETE, FINISHED
+        NOT_ACCEPTED, ACCEPTED, FAILED, COMPLETE, RESOLVED
     }
 
     public Quest(String id) {
         questID = id;
         questStatus = Status.NOT_ACCEPTED;
     }
-    public void createStage(String stageID){
-        if (uniqueCheck(stageID)){
+    public void createStage(String stageID) {
+        if (uniqueCheck(stageID)) {
             stageData.add(new Stage(stageID));
         }
     }
@@ -65,10 +65,10 @@ public class Quest {
     public ArrayList<Stage> getAllStages() {
         return stageData;
     }
-    public Stage getFirstIncompleteStage(){
+    public Stage getFirstIncompleteStage() {
         if (stageData != null) {
             for (Stage n : stageData) {
-                if (!n.getStatus()){
+                if (!n.getStatus()) {
                     return n;
                 }
             }
@@ -87,7 +87,7 @@ public class Quest {
     //
     private boolean uniqueCheck(String id) {
         for (Stage n : stageData) {
-            if(n.getID().equals(id)){
+            if(n.getID().equals(id)) {
                 return false;
             }
         }
