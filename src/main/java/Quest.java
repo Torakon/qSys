@@ -15,15 +15,17 @@ public class Quest {
         questID = id;
         questStatus = Status.NOT_ACCEPTED;
     }
-    public void createStage(String stageID) {
+    public Quest createStage(String stageID) {
         if (uniqueCheck(stageID)) {
             stageData.add(new Stage(stageID));
         }
+        return this;
     }
-    public void createStage(Stage stage) {
+    public Quest createStage(Stage stage) {
         if (uniqueCheck(stage.getID())) {
             stageData.add(stage);
         }
+        return this;
     }
 
     //Get Methods
@@ -77,11 +79,13 @@ public class Quest {
     }
 
     //Set Methods
-    public void setStatus(Status status) {
+    public Quest setStatus(Status status) {
         questStatus = status;
+        return this;
     }
-    public void setDesc(String questDescription) {
+    public Quest setDesc(String questDescription) {
         desc = questDescription;
+        return this;
     }
 
     //

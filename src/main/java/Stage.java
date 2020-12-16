@@ -44,29 +44,35 @@ public class Stage {
     public boolean checkCounter() { return usesCounter; }
 
     //Set Methods
-    public void setDesc(String stageDescription) {
+    public Stage setDesc(String stageDescription) {
         desc = stageDescription;
+        return this;
     }
-    public void setStatus(boolean bStatus){
+    public Stage setStatus(boolean bStatus){
         stageComplete = bStatus;
+        return this;
     }
-    public void setXY(int x, int y) {
+    public Stage setXY(int x, int y) {
         markerXY.setLocation(x, y);
+        return this;
     }
-    public void setXY(Point2D location) {
+    public Stage setXY(Point2D location) {
         markerXY = location;
         usesMarker = true;
+        return this;
     }
-    public void setMarkerRadius(int radius) {
+    public Stage setMarkerRadius(int radius) {
         markerRad = radius;
         usesMarker = true;
+        return this;
     }
     public void isMarked() {
         usesMarker = false;
     }
-    public void addCounter(int max) {
+    public Stage addCounter(int max) {
         usesCounter = true;
         maxCounter = max;
+        return this;
     }
     public void incrementCounter() {
         if (usesCounter) {
