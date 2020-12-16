@@ -21,7 +21,11 @@ public class Stage {
         return stageID;
     }
     public String getDesc() {
-        return Objects.requireNonNullElse(desc, "The stage Description has not been set");
+        if (!usesCounter) {
+            return Objects.requireNonNullElse(desc, "The stage Description has not been set");
+        }
+        return Objects.requireNonNullElse(desc + " (" + getProgress() + "/" +getMaxCounter() + ")",
+                "The stage Description has not been set");
     }
     public Point2D getXY() { return markerXY; }
     public int getMarkerRadius() {
@@ -56,6 +60,9 @@ public class Stage {
     public void setMarkerRadius(int radius) {
         markerRad = radius;
         usesMarker = true;
+    }
+    public void isMarked() {
+        usesMarker = false;
     }
     public void addCounter(int max) {
         usesCounter = true;

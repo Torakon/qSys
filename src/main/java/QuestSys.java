@@ -36,10 +36,14 @@ public class QuestSys {
         }
         return byStatus;
     }
+    public ArrayList<Quest> getQuestByStatus(Quest.Status firstStatus, Quest.Status secondStatus) {
+        ArrayList<Quest> byStatus = getQuestByStatus(firstStatus);
+        byStatus.addAll(getQuestByStatus(secondStatus));
+        return byStatus;
+    }
     public int getListLength() {
         return questData.size();
     }
-    //removed - getting quest by index
 
     //Set Methods //if needed
 
@@ -69,3 +73,5 @@ public class QuestSys {
         }
     }
 }
+
+//TODO: events? how would I do this considering adapting/wrapping this for FXGL demo
