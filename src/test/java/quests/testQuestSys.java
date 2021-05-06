@@ -1,5 +1,8 @@
-import org.junit.Assert;
-import org.junit.Test;
+package quests;
+
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class testQuestSys {
     @Test
@@ -7,8 +10,8 @@ public class testQuestSys {
         QuestSys testCase = new QuestSys();
         testCase.createQuest("firstQuest");
 
-        Assert.assertEquals(1, testCase.getListLength());
-        Assert.assertEquals("firstQuest", testCase.getQuestByID("firstQuest").getID());
+        assertEquals(1, testCase.getListLength());
+        assertEquals("firstQuest", testCase.getQuestByID("firstQuest").getID());
     }
     @Test
     public void testGetByStage() {
@@ -22,8 +25,7 @@ public class testQuestSys {
             testCase.getQuestByID(String.valueOf(i)).setStatus(Quest.Status.COMPLETE);
         }
 
-        Assert.assertEquals(2, testCase.getQuestByStatus(Quest.Status.ACCEPTED).size());
-        Assert.assertEquals(4, testCase.getQuestByStatus(Quest.Status.COMPLETE).size());
+        assertEquals(2, testCase.getQuestByStatus(Quest.Status.ACCEPTED).size());
+        assertEquals(4, testCase.getQuestByStatus(Quest.Status.COMPLETE).size());
     }
 }
-//updated test to use a more appropriate method
